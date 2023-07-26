@@ -152,8 +152,9 @@ zUI:RegisterComponent("zChat", function()
             ['(.+) receives item: (.+)%.']       = '+ %2 for %1.',
             ['(.+) receives loot: (.+)%.']       = '+ %2 for %1.',
             ['(.+) creates: (.+)%.']             = '+ %2 for %1.',
-            ['+ (.+) Silver, (.+) Copper.']      = '+ %1银 %2铜',
+            ['(.+) Silver, (.+) Copper.']      = '+ %1银 %2铜',
             ['You loot (.+) Copper']             = "+ %1铜",
+            ['You loot (.+) Gold']             = "+ %1金",
             
         },
         CHAT_MSG_SKILL = {
@@ -662,7 +663,7 @@ zUI:RegisterComponent("zChat", function()
                 --local d = gsub(date'%I.%M'..string.lower(date'%p'), '0*(%d+)', '%1', 1) -- Change to 24H here.
                 local d = gsub(date "%H:%M", '0*(%d+)', '%1', 1) -- Change to 24H here.
                 --mrbcat20230727添加显示时间开关，在zoptions中添加check
-                if not C.quality.off_chattime =='1' then                    
+                if C.quality.off_chattime =='0' then                    
                     t = string.format('|cffffc800%s|r %s', d, t)
                 end
                 

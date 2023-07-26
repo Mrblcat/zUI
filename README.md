@@ -27,13 +27,20 @@ This addon aims to preserve the blizzard look/design but with a modern touch and
 
 ## 更新说明
 
+### 20230727
+
+添加：聊天时间开启和关闭选项
+
+修改：问题反馈为gitee国内源
+
 ### 20230726
 
 修正：姓名版defbff 开关无效的问题
 
 
 
-<b>TurtleWoW compatible.</b>
+### TurtleWoW compatible
+
 <img src="https://i.imgur.com/R2FI64k.png" align="right" width="28%">
 
 ## Older Screenshots

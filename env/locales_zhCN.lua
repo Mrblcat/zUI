@@ -99,7 +99,7 @@
     ["Auto Repair"]="关闭自动修理",
     ["Clean Up"] = "聊天姓名职业色",
     ["Off Hardcore Chat"] = "关闭硬核死亡通告",
-    ["Off chattime"]="关闭聊天时间",
+    ["Off chattime"]="关闭聊天时间戳",
   }
 
 
