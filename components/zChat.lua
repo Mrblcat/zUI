@@ -42,7 +42,7 @@ zUI:RegisterComponent("zChat", function()
         f:SetScript('OnMouseWheel', zScroll)
     end
 
-    hideFrameForever(ChatFrameMenuButton);
+    --hideFrameForever(ChatFrameMenuButton);
 
     local addEditBox  = function()
         local x = ({ ChatFrameEditBox:GetRegions() })
@@ -152,8 +152,9 @@ zUI:RegisterComponent("zChat", function()
             ['(.+) receives item: (.+)%.']       = '+ %2 for %1.',
             ['(.+) receives loot: (.+)%.']       = '+ %2 for %1.',
             ['(.+) creates: (.+)%.']             = '+ %2 for %1.',
-            ['You loot (.+) Copper']             = "+ %1铜",
             ['+ (.+) Silver, (.+) Copper.']      = '+ %1银 %2铜',
+            ['You loot (.+) Copper']             = "+ %1铜",
+            
         },
         CHAT_MSG_SKILL = {
             ['Your skill in (.+) has increased to (.+).'] = '%1 lvl %2.'
@@ -208,7 +209,7 @@ zUI:RegisterComponent("zChat", function()
             ['(.+) has defeated (.+) in a duel']                                                                                                         = '%1在决斗中战胜%2',
             ['(.+) leaves the party.']                                                                                                                   = '|cffff7d00%1|r 离开队伍',
             ['Your share of the loot is (.+)%.']                                                                                                         = '+ %1',
-            ['(.+) completed.']                                                                                                                          = '|cff32CD32%1|r 任务完成',
+            ['(.+) completed.']                                                                                                                          = '|cffFF8C00%1|r 任务完成',
             ['Wanted: (.+) completed.']                                                                                                                  = '|cffFFC0CBWanted:|r %1 任务完成',
             ['Congratulations, you have reached level (.+)!']                                                                                            = '恭喜你到达 %1级！',
             ['You have gained (.+) hit points and (.+) mana.']                                                                                           = '命中 +%1 MP +%2',
@@ -660,7 +661,11 @@ zUI:RegisterComponent("zChat", function()
             if (zUI_config.chat.tstamps == "1") then
                 --local d = gsub(date'%I.%M'..string.lower(date'%p'), '0*(%d+)', '%1', 1) -- Change to 24H here.
                 local d = gsub(date "%H:%M", '0*(%d+)', '%1', 1) -- Change to 24H here.
-                t = string.format('|cffffc800%s|r %s', d, t)
+                --mrbcat20230727添加显示时间开关，在zoptions中添加check
+                if not C.quality.off_chattime =='1' then                    
+                    t = string.format('|cffffc800%s|r %s', d, t)
+                end
+                
             end
         end
         --       urls

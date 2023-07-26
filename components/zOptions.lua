@@ -849,23 +849,32 @@ end
 			this.welcome:SetPoint("TOPLEFT", 140, -160)
 			this.welcome:SetWidth(200)
 			this.welcome:SetJustifyH("LEFT")
-			this.welcome:SetText("Thank you for trying |cffffd200z|c"..color.."UI")
+			this.welcome:SetText("感谢使用|cffffd200z|c"..color.."UI")
 
 			this.bugs = this:CreateFontString("Status", "LOW", "GameFontWhite")
 			this.bugs:SetFont(STANDARD_TEXT_FONT, C.global.font_size)
 			this.bugs:SetPoint("TOPLEFT", 80, -180)
 			this.bugs:SetWidth(300)
 			this.bugs:SetJustifyH("LEFT")
-			this.bugs:SetText("If you find any bugs, please report them to the addon issues section on the github page.")
+			this.bugs:SetText("使用中有任何问题及时反馈！")
 			--this.versionc:SetText(T["Version"] .. ":")
 
+			-- local gitlab = CreateFrame("Button", nil, this, "UIPanelButtonTemplate")
+			-- gitlab:SetPoint("TOPLEFT", 160, -225)
+			-- gitlab:SetWidth(100)
+			-- gitlab:SetHeight(20)
+			-- gitlab:SetText("Github")
+			-- gitlab:SetScript("OnClick", function()
+			-- 	currentURL = "https://github.com/Ko0z/zui"
+			-- 	StaticPopup_Show("URL_GITLAB_COPY_DIALOG")
+			-- end)
 			local gitlab = CreateFrame("Button", nil, this, "UIPanelButtonTemplate")
 			gitlab:SetPoint("TOPLEFT", 160, -225)
 			gitlab:SetWidth(100)
 			gitlab:SetHeight(20)
-			gitlab:SetText("Github")
+			gitlab:SetText("Gitee_MrBCat_zUI")
 			gitlab:SetScript("OnClick", function()
-				currentURL = "https://github.com/Ko0z/zui"
+				currentURL = "https://gitee.com/mrbcat/zUI"
 				StaticPopup_Show("URL_GITLAB_COPY_DIALOG")
 			end)
 
@@ -984,6 +993,7 @@ end
 			--CreateConfig(nil, T[zUI.mlocals["Auto Repair"]], C.quality, "auto_repair", "checkbox")
 			CreateConfig(nil, T[zUI.mlocals["Clean Up"]], C.quality, "clean_up", "checkbox")
 			CreateConfig(nil, T[zUI.mlocals["Retarget Feign Death"]], C.quality, "feign_death", "checkbox")
+			CreateConfig(nil, T[zUI.mlocals["Off chattime"]], C.quality, "off_chattime", "checkbox")
 
 			-- CreateConfig(nil, T[zUI.mlocals["Swingtimer"]], nil, nil, "header")
 			-- CreateConfig(nil, T[zUI.mlocals["Hide Swingtimer"]], C.quality.swingtimer, "disable", "checkbox")
