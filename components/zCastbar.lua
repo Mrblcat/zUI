@@ -24,14 +24,14 @@ zUI:RegisterComponent("zCastbar", function()
 		local DefaultIcons = {
 			["采集草药"] = "spell_nature_naturetouchgrow",
 			["Herb Gathering"] = "spell_nature_naturetouchgrow",
-			["采矿"]       = "trade_mining",
-			["Mining"]       = "trade_mining",
-			["剥皮"]       = "inv_misc_pelt_wolf_01",
-			["Skinning"]       = "inv_misc_pelt_wolf_01",
-			["开锁"]       = "INV_Misc_Gear_03",
-			["火炮"]       = "INV_Ammo_Bullet_01",
-			["打开"]       = "Spell_Nature_MoonKey",
-			["Opening"]       = "Spell_Nature_MoonKey",
+			["采矿"] = "trade_mining",
+			["Mining"] = "trade_mining",
+			["剥皮"] = "inv_misc_pelt_wolf_01",
+			["Skinning"] = "inv_misc_pelt_wolf_01",
+			["开锁"] = "INV_Misc_Gear_03",
+			["火炮"] = "INV_Ammo_Bullet_01",
+			["打开"] = "Spell_Nature_MoonKey",
+			["Opening"] = "Spell_Nature_MoonKey",
 
 		}
 		local customchannel = {
@@ -131,21 +131,22 @@ zUI:RegisterComponent("zCastbar", function()
 				-- scan for channel spells if no cast was found
 				cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitChannelInfo(name)
 			end
-			
+
 			if cast then
 				local duration = endTime - startTime
 				local channel = UnitChannelInfo(name)
 				local max = duration / 1000
 				local cur = GetTime() - startTime / 1000
 				--zPrint(cast)
-				if zUI.castbar.player and C.castbar.player.hide_zUI == "0" then
+				--mrbcat20230603创建当前施法图标对象
+				if C.castbar.player.above == '0' then
+	
 					zUI.Castbar_h = 120
-				if UnitIsDead("pet") or UnitExists("pet") then
-					zUI.Castbar_h = 150
-				else
-					zUI.Castbar_h = 120
-				end
-				
+					if UnitIsDead("pet") or UnitExists("pet") then
+						zUI.Castbar_h = 150
+					else
+						zUI.Castbar_h = 120
+					end
 					zUI.castbar.player:ClearAllPoints()
 					zUI.castbar.player:SetPoint("BOTTOM", UIParent, "BOTTOM", 15, zUI.Castbar_h)
 					this:SetAlpha(1)
@@ -162,13 +163,10 @@ zUI:RegisterComponent("zCastbar", function()
 					icon.Texture:SetTexture(zUI.ICON)
 
 					icon:Show()
+				else
+					--zUI.castbar.player:SetWidth(160)
 				end
-
-				--设置施法条高度，有宠物技能栏150没有就是130
-				
-				
-
-
+				this:SetAlpha(1)
 				if this.endTime ~= endTime then
 					this.bar:SetStatusBarColor(strsplit(",",
 						C.appearance.castbar[(channel and "channelcolor" or "castbarcolor")]))
@@ -237,41 +235,32 @@ zUI:RegisterComponent("zCastbar", function()
 
 	-- [[ zPlayerCastbar ]] --
 	if C.castbar.player.hide_zUI == "0" then
-		local iconSize = 18
 		zUI.castbar.player = CreateCastbar("zPlayerCastbar", UIParent, "player")
-		--创建当前施法图标对象
-		zUI.castbar.player.Icon = CreateFrame("Button", nil, zUI.castbar.player)
-		zUI.castbar.player.Icon:SetPoint('LEFT', zUI.castbar.player, 'LEFT', -25, 0)
-		zUI.castbar.player.Icon.Texture = zUI.castbar.player.Icon:CreateTexture("curSpellIcon", "ARTWORK");
-		zUI.castbar.player.Icon.Texture:SetTexCoord(.1, .9, .1, .9);
-		zUI.castbar.player.Icon.Texture:SetAllPoints();
-
-
-
-		zUI.castbar.player.Icon:SetWidth(iconSize);
-		zUI.castbar.player.Icon:SetHeight(iconSize);
-		zUI.castbar.player.Icon.Texture:SetTexture("Interface\\Icons\\Ability_Gouge");
-		zSkin(zUI.castbar.player.Icon, 0);
-		zSkinColor(zUI.castbar.player.Icon, 0, 0, 150);
-
-		zUI.castbar.player.Icon:Hide()
-
-
-
-		--BorderIcon(zUI.castbar.player.Icon)
 		-- WIDTH player castbar
-		local width = C.castbar.player.width ~= "-1" and C.castbar.player.width or 180
+		local width = C.castbar.player.width ~= "-1" and  160
 
-		if C.castbar.player.hide_blizz == "1" then
-			zUI.castbar.player:SetPoint('BOTTOM', UIParent, -20, zUI.Castbar_h)
+
+		if (C.castbar.player.above == "1") then
+			-- Over
+			zUI.castbar.player:SetPoint('TOPLEFT', PlayerFrame, 60, 15)
 		else
-			if (C.castbar.player.above == "1") then
-				--Over
-				zUI.castbar.player:SetPoint('TOPLEFT', PlayerFrame, 60, 15)
-			else
-				-- Under
-				zUI.castbar.player:SetPoint('BOTTOMLEFT', PlayerFrame, 60, -30);
-			end
+			-- Under
+			--mrbcat20230603创建当前施法图标对象
+			--mrbcat20230727整合顶部显示或者屏幕显示
+			local iconSize = 18
+			zUI.castbar.player.Icon = CreateFrame("Button", nil, zUI.castbar.player)
+			zUI.castbar.player.Icon:SetPoint('LEFT', zUI.castbar.player, 'LEFT', -25, 0)
+			zUI.castbar.player.Icon.Texture = zUI.castbar.player.Icon:CreateTexture("curSpellIcon", "ARTWORK");
+			zUI.castbar.player.Icon.Texture:SetTexCoord(.1, .9, .1, .9);
+			zUI.castbar.player.Icon.Texture:SetAllPoints();
+			zUI.castbar.player.Icon:SetWidth(iconSize);
+			zUI.castbar.player.Icon:SetHeight(iconSize);
+			zUI.castbar.player.Icon.Texture:SetTexture("Interface\\Icons\\Ability_Gouge");
+			zSkin(zUI.castbar.player.Icon, 0);
+			zSkinColor(zUI.castbar.player.Icon, 0, 0, 150);
+			zUI.castbar.player.Icon:Hide()
+			--底部显示的时候施放条长度为180，默认长度160
+			width = 180
 		end
 
 

@@ -216,7 +216,7 @@ zUI:RegisterComponent("zUnitframes", function()
 				C.unitframes.nametexty + 6);
 			--PlayerName:SetPoint("CENTER", PlayerFrameHealthBar, "Center", C.unitframes.nametextx + 3,0);
 			TargetName:SetPoint("CENTER", TargetFrameHealthBar, "Center", -C.unitframes.nametextx + 3,
-				C.unitframes.nametexty + 6);
+				C.unitframes.nametexty +6);
 		else
 			PlayerName:SetPoint("CENTER", PlayerFrameHealthBar, "Center", C.unitframes.nametextx + 3,
 				C.unitframes.nametexty + 1);                                                                              -- y = +6
