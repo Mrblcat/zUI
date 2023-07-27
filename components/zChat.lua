@@ -659,13 +659,14 @@ zUI:RegisterComponent("zChat", function()
             end
             --   timestamp
             --if  var.tstamps then
-            if (zUI_config.chat.tstamps == "1") then
+            --mrbcat 20230727添加时间戳开关，在zoptions中添加 quality.off_chattime 0表示未选中，1是选中
+            if C.quality.off_chattime =='0' then
                 --local d = gsub(date'%I.%M'..string.lower(date'%p'), '0*(%d+)', '%1', 1) -- Change to 24H here.
                 local d = gsub(date "%H:%M", '0*(%d+)', '%1', 1) -- Change to 24H here.
-                --mrbcat20230727添加显示时间开关，在zoptions中添加check
-                if C.quality.off_chattime =='0' then                    
-                    t = string.format('|cffffc800%s|r %s', d, t)
-                end
+                
+                                
+                t = string.format('|cffffc800%s|r %s', d, t)
+                
                 
             end
         end
