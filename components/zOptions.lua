@@ -1032,7 +1032,7 @@ end
 		end)
 
 		CreateGUIEntry(zUI.mlocals["Castbar"], nil, function()
-			CreateConfig(nil, T[zUI.mlocals["Hide Blizz Castbar"]], C.castbar.player, "hide_blizz", "checkbox")
+			--CreateConfig(nil, T[zUI.mlocals["Hide Blizz Castbar"]], C.castbar.player, "hide_blizz", "checkbox")
 			CreateConfig(nil, T[zUI.mlocals["Castbar Color"]], C.appearance.castbar, "castbarcolor", "color")
 			CreateConfig(nil, T[zUI.mlocals["Castbar Channel Color"]], C.appearance.castbar, "channelcolor", "color")
 			CreateConfig(nil, T[zUI.mlocals["Flat Castbar Textures"]], C.castbar, "flat_texture", "checkbox")

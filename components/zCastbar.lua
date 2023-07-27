@@ -228,13 +228,13 @@ zUI:RegisterComponent("zCastbar", function()
 
 
 	-- hide blizzard
-	if C.castbar.player.hide_blizz == "1" then
-		CastingBarFrame:UnregisterAllEvents()
-		CastingBarFrame:Hide()
-	end
+
 
 	-- [[ zPlayerCastbar ]] --
 	if C.castbar.player.hide_zUI == "0" then
+		--去除关闭暴雪施法条选项
+		CastingBarFrame:UnregisterAllEvents()
+		CastingBarFrame:Hide()
 		zUI.castbar.player = CreateCastbar("zPlayerCastbar", UIParent, "player")
 		-- WIDTH player castbar
 		local width = C.castbar.player.width ~= "-1" and  160
