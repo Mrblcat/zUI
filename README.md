@@ -31,6 +31,8 @@ This addon aims to preserve the blizzard look/design but with a modern touch and
 
 添加：聊天时间开启和关闭选项
 
+恢复：施法条顶部显示组件选项功能
+
 修改：问题反馈为gitee国内源
 
 ### 20230726
